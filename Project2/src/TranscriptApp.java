@@ -9,8 +9,23 @@ public class TranscriptApp {
 		String next = "";
 		while(!next.equalsIgnoreCase("n")){
 			String name = Validator.getString(sc, "Enter couse: ");
-			int credits = Validator.getInt(sc, "Enter credits: ");
+			// int credits = Validator.getInt(sc, "Enter credits: ");
+			int credits = 0;
+			try{
+				System.out.print("Enter credits: ");
+				credits = Integer.parseInt(sc.next());
+			}catch(NumberFormatException e){
+				e.printStackTrace();
+			}finally{
+				sc.nextLine();
+			}
+						
 			String grade = Validator.getString(sc, "Enter grade: ");
+			String check = "ABCDabcd";
+			while(!check.contains(grade) || grade.length() != 1){
+				grade = Validator.getString(sc, "Please enter a valid grade: (A, B, C, D)");
+			}
+			
 			char g = grade.charAt(0);
 			Course c = CourseDB.getCourse(name);
 			//System.out.println(name);
